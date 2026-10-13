@@ -68,7 +68,7 @@ module.exports = configure(function () {
       // publicPath: '/',
       // analyze: true,
       env: {
-        SERVER: require('dotenv').config().parsed.SERVER
+        SERVER: process.env.SERVER || require('dotenv').config().parsed.SERVER
       }
       // rawDefine: {}
       // ignorePublicFolder: true,

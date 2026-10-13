@@ -1,3 +1,4 @@
+/* global process */
 // import * as dotenv from 'dotenv'
 // dotenv.config()
 
@@ -14,7 +15,9 @@ import axios from 'axios'
 // "export default () => {}" function below (which runs individually
 // for each client)
 
-const api = axios.create({ baseURL: 'https://schoolmanegementsystem.up.railway.app'})
+const api = axios.create({
+  baseURL: process.env.SERVER || 'http://localhost:3002'
+})
 
 // api.interceptors.request.use(
 //   config => {

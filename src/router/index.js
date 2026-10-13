@@ -3,6 +3,7 @@ import { route } from 'quasar/wrappers'
 import { createRouter, createMemoryHistory, createWebHistory, createWebHashHistory } from 'vue-router'
 import routes from './routes'
 import useAuth from 'src/composables/useAuth'
+import { api } from 'src/boot/axios'
 
 /*
  * If not building with SSR mode, you can
@@ -29,6 +30,21 @@ export default route(function (/* { store, ssrContext } */) {
   })
 
   Router.beforeEach(async (to) => {
+    let installation
+    try {
+      installation = (await api.get('/setup/status')).data
+    } catch (error) {
+      installation = { configured: true }
+    }
+
+    if (!installation.configured && to.name !== 'setupPage') {
+      return { name: 'setupPage' }
+    }
+    if (installation.configured && to.name === 'setupPage') {
+      return { name: 'loginPage' }
+    }
+    if (to.name === 'setupPage') return true
+
     const { isLoggedIn } = useAuth()
     const loged = await isLoggedIn()
     if (

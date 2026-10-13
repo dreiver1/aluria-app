@@ -1,16 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
-    <q-header elevated>
-      <q-toolbar>
-
-        <q-toolbar-title>
-          School Management
-        </q-toolbar-title>
-
-        <div>Quasar v{{ $q.version }}</div>
-      </q-toolbar>
-    </q-header>
-
+  <q-layout class="auth-layout">
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -18,9 +7,14 @@
 </template>
 
 <script>
-
-export default ({
-  name: 'MainLayout'
-
-})
+export default {
+  name: 'LoginLayout'
+}
 </script>
+
+<style scoped>
+.auth-layout {
+  min-height: 100vh;
+  background: #f5f7f1;
+}
+</style>

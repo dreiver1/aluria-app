@@ -2,6 +2,11 @@
 .thumbs.db
 node_modules
 
+# Local environment values must never be committed.
+.env
+.env.*
+!.env.example
+
 # Quasar core related directories
 .quasar
 /dist
